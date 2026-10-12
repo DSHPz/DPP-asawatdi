@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Drop-down Menu</title>
+    <link rel="stylesheet" href="menu.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">
+        <strong>Gare</strong>
+        <span>Paris &middot; Lyon &middot; and everywhere between</span>
+      </div>
+
+      <nav>
+        <ul class="menu">
+          <li><a href="#">Home</a></li>
+
+          <li class="has-sub">
+            <a href="#" aria-haspopup="true">Tickets</a>
+            <ul class="dropdown">
+              <li><a href="#">Single journey</a></li>
+              <li><a href="#">Return trip</a></li>
+              <li><a href="#">Night train</a></li>
+              <li><a href="#">Season pass</a></li>
+            </ul>
+          </li>
+
+          <li class="has-sub">
+            <a href="#" aria-haspopup="true">Destinations</a>
+            <ul class="dropdown">
+              <li class="has-sub">
+                <a href="#">France</a>
+                <ul class="dropdown">
+                  <li><a href="#">Paris</a></li>
+                  <li><a href="#">Lyon</a></li>
+                  <li><a href="#">Marseille</a></li>
+                  <li><a href="#">Bordeaux</a></li>
+                </ul>
+              </li>
+              <li class="has-sub">
+                <a href="#">Europe</a>
+                <ul class="dropdown">
+                  <li><a href="#">Brussels</a></li>
+                  <li><a href="#">Geneva</a></li>
+                  <li><a href="#">Barcelona</a></li>
+                </ul>
+              </li>
+              <li><a href="#">Special offers</a></li>
+            </ul>
+          </li>
+
+          <li class="has-sub">
+            <a href="#" aria-haspopup="true">On board</a>
+            <ul class="dropdown">
+              <li><a href="#">Ham &amp; cheese sandwich</a></li>
+              <li><a href="#">Coffee &amp; pastries</a></li>
+              <li><a href="#">Wi-Fi</a></li>
+            </ul>
+          </li>
+
+          <li><a href="#">Help</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="content">
+      <section class="ticket">
+        <h1>Next stop: a very good sandwich</h1>
+        <p>
+          A pure HTML and CSS drop-down menu, no JavaScript. Hover over or tab
+          through the menu items to open the layers.
+        </p>
+      </section>
+    </main>
+  </body>
+</html>
