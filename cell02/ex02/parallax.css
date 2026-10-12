@@ -1,0 +1,86 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: #fff;
+}
+
+/* ---------- Parallax sections ---------- */
+.parallax {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 24px;
+
+  /* the parallax effect: the image stays fixed while the page scrolls over it */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* Image 1: night mountains (inline SVG, so no extra file is needed) */
+.parallax.first {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 900' preserveAspectRatio='xMidYMid slice'><defs><linearGradient id='g' x1='0' y1='0' x2='0' y2='1'><stop offset='0' stop-color='%230b1f3a'/><stop offset='0.6' stop-color='%23c8102e'/><stop offset='1' stop-color='%23ffb36b'/></linearGradient></defs><rect width='1600' height='900' fill='url(%23g)'/><g fill='%23fff8ec' opacity='0.85'><circle cx='180' cy='120' r='2.5'/><circle cx='420' cy='70' r='2'/><circle cx='640' cy='170' r='3'/><circle cx='860' cy='90' r='2'/><circle cx='1020' cy='160' r='2.5'/><circle cx='1400' cy='110' r='3'/><circle cx='1530' cy='230' r='2'/><circle cx='300' cy='260' r='2'/><circle cx='760' cy='300' r='2'/></g><circle cx='1200' cy='230' r='85' fill='%23fff8ec'/><path d='M0 900V620L220 420L420 600L650 360L900 640L1150 450L1400 620L1600 500V900Z' fill='%23301a3a'/><path d='M0 900V740L300 560L560 740L820 580L1100 760L1350 620L1600 740V900Z' fill='%23140b22'/></svg>");
+}
+
+/* Image 2: sea at sunrise (inline SVG) */
+.parallax.second {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 900' preserveAspectRatio='xMidYMid slice'><defs><linearGradient id='s' x1='0' y1='0' x2='0' y2='1'><stop offset='0' stop-color='%23118ab2'/><stop offset='0.55' stop-color='%23ffd166'/><stop offset='1' stop-color='%23ef476f'/></linearGradient><linearGradient id='w' x1='0' y1='0' x2='0' y2='1'><stop offset='0' stop-color='%23073b4c'/><stop offset='1' stop-color='%23021f2b'/></linearGradient></defs><rect width='1600' height='900' fill='url(%23s)'/><circle cx='800' cy='520' r='150' fill='%23fff3c4'/><rect y='520' width='1600' height='380' fill='url(%23w)'/><g fill='%23ffd166' opacity='0.7'><rect x='680' y='545' width='240' height='6' rx='3'/><rect x='710' y='575' width='180' height='6' rx='3'/><rect x='740' y='605' width='120' height='6' rx='3'/><rect x='765' y='635' width='70' height='6' rx='3'/></g><path d='M0 760Q200 720 400 760T800 760T1200 760T1600 760V900H0Z' fill='%23021f2b' opacity='0.8'/></svg>");
+}
+
+/* ---------- Text on the images ---------- */
+.parallax p {
+  margin: 0;
+  padding: 18px 32px;
+  max-width: 640px;
+  font-size: clamp(1.1rem, 2.6vw, 1.8rem);
+  letter-spacing: 0.04em;
+  line-height: 1.5;
+  background: rgba(0, 0, 0, 0.35);
+  border-radius: 10px;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+}
+
+/* ---------- Black block ---------- */
+.black-block {
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 48px 24px;
+  background: #000;
+}
+
+.black-block h2 {
+  margin: 0 0 14px;
+  font-size: clamp(1.6rem, 4vw, 2.6rem);
+  letter-spacing: 0.08em;
+}
+
+.black-block p {
+  margin: 0 auto;
+  max-width: 560px;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #ccc;
+}
+
+/* ---------- Touch devices ----------
+   Many mobile browsers do not support fixed backgrounds well,
+   so fall back to a normal scrolling background there. */
+@media (max-width: 768px), (hover: none) {
+  .parallax {
+    background-attachment: scroll;
+  }
+}
