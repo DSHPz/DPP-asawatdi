@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Basics</title>
+    <style>
+      body {
+        background-color: pink; /* the CSS named color "pink" (#FFC0CB) */
+        margin: 0;
+        padding: 20px;
+        font-family: Arial, sans-serif;
+      }
+      h1 {
+        color: white;
+        text-align: center;
+        font-size: 4em;
+      }
+      .shops {
+        display: flex;
+        justify-content: center;
+        gap: 60px;
+        flex-wrap: nowrap;
+      }
+      .shop {
+        text-align: center;
+      }
+      .shop img {
+        width: 250px;
+        height: 250px;
+        max-width: 100%;
+      }
+      .shop a {
+        display: block;
+        margin-top: 10px;
+        color: #8b0045;
+      }
+      hr {
+        width: 100%;
+        margin: 40px 0 20px;
+        border: 0;
+        border-top: 2px solid white;
+      }
+      footer {
+        text-align: right;
+        font-style: italic;
+        font-family: monospace;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Basics &amp; Co. : Shop !</h1>
+
+    <div class="shops">
+      <div class="shop">
+        <img
+          src="https://authornews.penguinrandomhouse.com/wp-content/uploads/2020/08/bookshop2.jpg"
+          alt="An online bookstore"
+        />
+        <a href="https://bookshop.org" target="_blank">bookshop.org</a>
+      </div>
+      <div class="shop">
+        <img
+          src="https://files.cdn.printful.com/o/upload/bfl-image/09/25220_l_02-Create%20your%20Etsy%20account%20and%20shop.jpg"
+          alt="An online marketplace"
+        />
+        <a href="https://www.etsy.com" target="_blank">etsy.com</a>
+      </div>
+    </div>
+
+    <hr />
+
+    <footer>&copy; wil 2026</footer>
+  </body>
+</html>
