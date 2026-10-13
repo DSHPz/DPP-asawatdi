@@ -1,0 +1,145 @@
+* {
+  box-sizing: border-box;
+}
+
+body.landing-page {
+  min-height: 100vh;
+  margin: 0;
+  padding: 3rem 1.25rem;
+  display: grid;
+  place-items: center;
+  background: #f4f6fb;
+  color: #192237;
+  font-family: Arial, sans-serif;
+}
+
+.landing {
+  width: min(100%, 680px);
+}
+
+.eyebrow {
+  margin: 0 0 0.6rem;
+  color: #576985;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+}
+
+.landing h1 {
+  margin: 0;
+  font-size: clamp(2rem, 6vw, 3rem);
+  letter-spacing: -0.04em;
+}
+
+.intro {
+  margin: 0.8rem 0 2rem;
+  color: #576278;
+  line-height: 1.6;
+}
+
+.exercise-list {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.exercise-card {
+  display: grid;
+  grid-template-columns: 3rem 1fr auto;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.1rem;
+  border: 1px solid #e0e5ef;
+  border-radius: 0.8rem;
+  background: #fff;
+  color: inherit;
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgb(29 45 75 / 5%);
+  transition: border-color 140ms ease, transform 140ms ease, box-shadow 140ms ease;
+}
+
+.exercise-card:hover {
+  transform: translateY(-2px);
+  border-color: #9baed2;
+  box-shadow: 0 8px 20px rgb(29 45 75 / 10%);
+}
+
+.exercise-card:focus-visible {
+  outline: 3px solid #6385d6;
+  outline-offset: 3px;
+}
+
+.exercise-number {
+  display: grid;
+  width: 2.8rem;
+  height: 2.8rem;
+  place-items: center;
+  border-radius: 0.7rem;
+  background: #edf1f9;
+  color: #344a73;
+  font-weight: 700;
+}
+
+.exercise-copy {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.exercise-copy strong {
+  font-size: 1.05rem;
+}
+
+.exercise-copy span {
+  color: #647087;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.arrow {
+  color: #62789f;
+  font-size: 1.4rem;
+}
+
+.home-link {
+  position: fixed;
+  z-index: 10;
+  top: 1rem;
+  left: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.65rem 0.9rem;
+  border: 1px solid #d9dfeb;
+  border-radius: 999px;
+  background: #fff;
+  color: #253653;
+  font: 600 0.9rem Arial, sans-serif;
+  text-decoration: none;
+  box-shadow: 0 3px 10px rgb(29 45 75 / 8%);
+}
+
+.home-link:hover {
+  border-color: #9baed2;
+  background: #f5f7fb;
+}
+
+.home-link:focus-visible {
+  outline: 3px solid #6385d6;
+  outline-offset: 3px;
+}
+
+@media (max-width: 440px) {
+  body.landing-page {
+    padding: 2rem 1rem;
+  }
+
+  .exercise-card {
+    grid-template-columns: 2.6rem 1fr auto;
+    gap: 0.75rem;
+    padding: 0.9rem;
+  }
+
+  .exercise-number {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+}
