@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Calculator</title>
+    <link rel="stylesheet" href="calc.css" />
+  </head>
+  <body>
+    <form id="calc-form">
+      <input type="text" id="left" name="left" autocomplete="off" />
+      <select id="operator" name="operator">
+        <option value="+">+</option>
+        <option value="-">-</option>
+        <option value="*">*</option>
+        <option value="/">/</option>
+        <option value="%">%</option>
+      </select>
+      <input type="text" id="right" name="right" autocomplete="off" />
+      <input type="submit" value="Try me!" />
+    </form>
+
+    <script src="calc.js"></script>
+  </body>
+</html>
