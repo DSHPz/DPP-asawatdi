@@ -1,14 +1,15 @@
-<!DOCTYPE html>
-<html lang="en"><head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Two Cells Table</title>
     <style>
       body {
         font-family: Arial, sans-serif;
         display: flex;
         justify-content: center;
-        align-items: center;
+        align-items: center; /* เปลี่ยนจาก center เป็น flex-start เพื่อให้ชิดขอบบน */
         height: 100vh;
         margin: 0;
         background-color: #f9f9f9;
@@ -24,7 +25,7 @@
         font-size: 1.5rem;
         color: #222;
         border: 1px solid #333;
-        text-align: left; /* ข้อความอยู่กลางแนวนอน */
+        text-align: left; /* ข้อความอยู่ซ้ายแนวนอน */
         vertical-align: middle; /* ข้อความอยู่กลางแนวตั้ง */
       }
       /* กำหนดสีและขนาดความกว้างของช่องแรก */
@@ -39,13 +40,51 @@
       }
     </style>
   </head>
-  <body style="display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0px;">
-    <table style="width: 840px; height: 130px; border-collapse: collapse; border: 1px solid black;">
-      <tbody><tr>
-        <td class="first-cell" style="padding: 0px; text-align: left; vertical-align: middle; width: 50%; border: 1px solid black;">First cell</td>
-        <td class="second-cell" style="padding: 0px; text-align: left; vertical-align: middle; width: 50%; border: 1px solid black;">Second cell</td>
-      </tr>
-    </tbody></table>
-  
-
-</body></html>
+  <body
+    style="
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0px;
+    "
+  >
+    <table
+      style="
+        width: 840px;
+        height: 130px;
+        border-collapse: collapse;
+        border: 1px solid black;
+      "
+    >
+      <tbody>
+        <tr>
+          <td
+            class="first-cell"
+            style="
+              padding: 0px;
+              text-align: left;
+              vertical-align: middle;
+              width: 50%;
+              border: 1px solid black;
+            "
+          >
+            First cell
+          </td>
+          <td
+            class="second-cell"
+            style="
+              padding: 0px;
+              text-align: left;
+              vertical-align: middle;
+              width: 50%;
+              border: 1px solid black;
+            "
+          >
+            Second cell
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
