@@ -1,20 +1,35 @@
 <!doctype html>
-<html lang="en">
+<html lang="th">
   <head>
     <meta charset="UTF-8" />
+
+    <!--
+      [Responsive ข้อ 1] viewport meta tag  (สำคัญที่สุดสำหรับมือถือ)
+      ถ้าไม่ใส่ มือถือจะจำลองหน้าจอกว้าง ~980px แล้วย่อทั้งหน้าลง
+      ทำให้ CSS responsive ที่เขียนไว้ไม่ทำงานตามที่คาด
+      width=device-width  -> ให้ความกว้างหน้าเว็บ = ความกว้างจอจริง
+      initial-scale=1.0   -> ไม่ซูมเข้า/ออกตอนเปิดหน้า
+    -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Responsive Cells Table</title>
+    <title>Responsive Two Cells Table</title>
+
     <link rel="stylesheet" href="responsive.css" />
   </head>
+
   <body>
+    <!--
+      หมายเหตุ: ไม่ใช้ inline style (style="...") ในไฟล์นี้
+      เพราะ inline style มีน้ำหนักสูงกว่า CSS ใน <style> จะไปทับค่าที่ตั้งไว้
+      (ไฟล์ต้นฉบับมี width: 840px ใน inline ซึ่งเป็นสาเหตุที่ตารางไม่ยอมหด)
+      แยก CSS ไว้ที่เดียวจะแก้ไขและดูแลง่ายกว่า
+    -->
     <table>
-      <tr>
-        <td class="cell 1">cell 1</td>
-        <td class="cell 2">cell 2</td>
-        <td class="cell 3">cell 3</td>
-        <td class="cell 4">cell 4</td>
-        <td class="cell 5">cell 5</td>
-      </tr>
+      <tbody>
+        <tr>
+          <td class="first-cell">First cell</td>
+          <td class="second-cell">Second cell</td>
+        </tr>
+      </tbody>
     </table>
   </body>
 </html>

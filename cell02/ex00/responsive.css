@@ -1,45 +1,99 @@
+/*
+  [Responsive ข้อ 2] box-sizing: border-box
+  ปกติ width/height ไม่รวม padding และ border ทำให้ขนาดจริงเกิน 100% แล้วเกิด scrollbar
+  border-box = padding + border นับรวมอยู่ใน width/height
+  ใส่ครั้งเดียวกับทุกองค์ประกอบด้วย *
+*/
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/*
+  [Responsive ข้อ 3] ทำให้ "หน้าเว็บ" มีความสูง/กว้างเต็มจอ
+  เปอร์เซ็นต์ (%) ของลูกจะอ้างอิงขนาดของพ่อ (parent)
+  ดังนั้นถ้าอยากให้ table สูง 100% ต้องไล่ให้ html และ body สูง 100% ก่อน
+  (ถ้า body ไม่มีความสูง height:100% ของ table จะไม่มีผล)
+  margin: 0 -> ลบขอบขาวที่ browser ใส่ให้ body โดยอัตโนมัติ (ปกติ 8px)
+*/
 html,
 body {
   width: 100%;
   height: 100%;
   margin: 0;
   padding: 0;
-  overflow: hidden;
-  font-family: Arial, sans-serif;
 }
 
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+}
+
+/*
+  [Responsive ข้อ 4] ใช้หน่วยสัมพัทธ์ (%) แทนหน่วยตายตัว (px)
+  โจทย์เดิมใช้ width: 840px ซึ่งล็อกขนาดไว้ จึงไม่ย่อตามหน้าต่าง
+  เปลี่ยนเป็น 100% -> ตารางกว้าง/สูงเท่าหน้าจอ และหดตามเมื่อย่อ browser
+
+  table-layout: fixed
+  - ปกติ table คำนวณความกว้างคอลัมน์จาก "เนื้อหา" ข้างใน ถ้ามีข้อความยาวจะดันตารางให้กว้างเกินจอ
+  - fixed = แบ่งคอลัมน์ตาม width ที่กำหนดเท่านั้น ไม่ขึ้นกับเนื้อหา จึงหดได้แน่นอน
+
+  border-collapse: collapse -> เส้นขอบของ 2 ช่องซ้อนเป็นเส้นเดียว ไม่เว้นช่องว่าง
+*/
 table {
-  width: 100vw;
-  height: 100vh;
-  table-layout: fixed; /* equal columns, table never grows past the page */
+  width: 100%;
+  height: 100%;
+  table-layout: fixed;
   border-collapse: collapse;
 }
 
 td {
+  /* แต่ละช่องกว้างครึ่งหนึ่งของตาราง ใช้ % เพื่อให้สัดส่วนคงที่ไม่ว่าจอจะกว้างเท่าไร */
+  width: 50%;
+  /*
+    padding: 0 -> ข้อความชิดซ้ายสุดของช่อง เหมือนไฟล์ต้นฉบับ
+    (ถ้าอยากเว้นระยะจากขอบ ให้ใช้ % เช่น padding: 0 5%
+    เพื่อให้ระยะห่างย่อ/ขยายตามจอ แทนการใช้ px)
+  */
   padding: 0;
-  text-align: center;
-  vertical-align: middle;
-  overflow: hidden;
-  word-break: break-word;
-  font-size: clamp(0.6rem, 3vw, 1.75rem); /* text shrinks with the window */
-  font-weight: 600;
-  color: #fff;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
-  border: 2px solid rgba(255, 255, 255, 0.6);
+  border: 1px solid #222;
+  text-align: left; /* ข้อความชิดซ้ายแนวนอน */
+  vertical-align: middle; /* ข้อความอยู่กลางแนวตั้ง */
+  color: #222;
+
+  /*
+    [Responsive ข้อ 5] ตัวอักษรที่ปรับตามจอ ด้วย clamp(ต่ำสุด, ยืดหยุ่น, สูงสุด)
+    - 4vw = 4% ของความกว้างหน้าต่าง (ยิ่งจอเล็ก ตัวยิ่งเล็ก)
+    - ต่ำสุด 0.9rem -> ไม่เล็กจนอ่านไม่ออก
+    - สูงสุด 2rem   -> ไม่ใหญ่เกินบนจอกว้าง
+    clamp() แทน media query ได้หลายกรณี โค้ดสั้นกว่ามาก
+  */
+  font-size: clamp(0.9rem, 4vw, 2rem);
+
+  /* ข้อความยาวไม่ล้นช่อง ให้ตัดขึ้นบรรทัดใหม่ */
+  overflow-wrap: anywhere;
 }
 
-td:nth-child(1) {
-  background-color: #ef476f;
+/* สีของแต่ละช่อง (คงตามไฟล์ต้นฉบับ) */
+.first-cell {
+  background-color: #b8c47b; /* เขียวมะกอก */
 }
-td:nth-child(2) {
-  background-color: #f78c6b;
+
+.second-cell {
+  background-color: #f4b19b; /* ส้มพีช/แซลมอน */
 }
-td:nth-child(3) {
-  background-color: #ffd166;
+
+/*
+  [Responsive ข้อ 6] Media Query (ตัวเสริม ใช้เมื่อ clamp ไม่พอ)
+  รูปแบบ: @media (max-width: ค่า) { ... }
+  = ใช้กฎข้างในเฉพาะตอนจอกว้างไม่เกินค่านั้น
+  ตัวอย่างด้านล่างปิดไว้ (คอมเมนต์อยู่) ลองเอา comment ออกแล้วย่อจอต่ำกว่า 480px
+  จะเห็นข้อความเล็กลงอีก
+
+@media (max-width: 480px) {
+  td {
+    font-size: 0.8rem;
+  }
 }
-td:nth-child(4) {
-  background-color: #06d6a0;
-}
-td:nth-child(5) {
-  background-color: #118ab2;
-}
+*/
