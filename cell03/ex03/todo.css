@@ -1,0 +1,80 @@
+/* ===== พื้นฐานของหน้า ===== */
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: #eef1f5;
+  color: #1f2937;
+  font-family: system-ui, -apple-system, "Segoe UI", "Noto Sans Thai", sans-serif;
+  display: flex;
+  justify-content: center;
+  padding: 40px 16px;
+}
+
+.app {
+  width: 100%;
+  max-width: 520px;
+}
+
+h1 {
+  margin: 0 0 16px;
+  font-size: 2rem;
+  letter-spacing: -0.02em;
+}
+
+/* ===== ปุ่ม New ===== */
+#new_btn {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  background: #2563eb;
+  border: 0;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.05s;
+}
+#new_btn:hover  { background: #1d4ed8; }
+#new_btn:active { transform: scale(0.98); }
+#new_btn:focus-visible,
+.todo:focus-visible { outline: 3px solid #93c5fd; outline-offset: 2px; }
+
+/* ===== รายการ TO DO ===== */
+#ft_list {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* แสดงข้อความเมื่อรายการว่าง (ใช้ได้เพราะ div ไม่มี child เลย) */
+#ft_list:empty::before {
+  content: "ยังไม่มีรายการ — กด New เพื่อเพิ่ม";
+  color: #6b7280;
+  text-align: center;
+  padding: 24px 0;
+}
+
+/* แต่ละ TO DO คือ div ที่อยู่ใน #ft_list */
+.todo {
+  padding: 14px 16px;
+  background: #fff;
+  border-left: 5px solid #2563eb;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+  word-break: break-word;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+/* hover แสดงสีแดงเพื่อบอกว่าคลิกแล้วจะลบ */
+.todo:hover {
+  background: #fef2f2;
+  border-left-color: #dc2626;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}

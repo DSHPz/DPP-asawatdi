@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mini To Do List</title>
+  <!-- ไฟล์ CSS ของหน้านี้ -->
+  <link rel="stylesheet" href="todo.css">
+</head>
+<body>
+  <main class="app">
+    <h1>To Do</h1>
+
+    <!-- ปุ่ม New: เมื่อกดจะเรียก prompt() เพื่อรับข้อความ TO DO ใหม่ (จัดการใน todo.js) -->
+    <button id="new_btn" type="button">New</button>
+
+    <!-- คอนเทนเนอร์หลักของรายการ (ต้องใช้ id="ft_list" ตามโจทย์)
+         ห้ามเว้นวรรค/ขึ้นบรรทัดใหม่ข้างใน เพื่อให้ CSS :empty ทำงานตอนไม่มีรายการ -->
+    <div id="ft_list"></div>
+  </main>
+
+  <!-- โหลด script ท้าย body เพื่อให้ DOM พร้อมก่อนใช้งาน -->
+  <script src="todo.js"></script>
+</body>
+</html>
