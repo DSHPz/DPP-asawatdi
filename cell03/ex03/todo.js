@@ -3,15 +3,20 @@
    - New      : กดปุ่มแล้วถามข้อความผ่าน prompt() แล้วเพิ่มไว้บนสุด
    - ลบ       : คลิกที่ TO DO แล้วยืนยันผ่าน confirm()
    - บันทึก   : เก็บรายการใน cookie และโหลดกลับมาตอนเปิดหน้าใหม่
+
+   [jQuery] ไฟล์นี้ถูกปรับให้ใช้ jQuery แล้ว
+   ส่วนที่เปลี่ยนจะมี comment ขึ้นต้นด้วย "[jQuery]" ส่วนที่ไม่มี = คงเดิม
    ========================================================== */
 
 var COOKIE_NAME = 'ft_todos';
 var COOKIE_DAYS = 365;
 
-var list = document.getElementById('ft_list');
-var newBtn = document.getElementById('new_btn');
+// [jQuery] เปลี่ยนจาก document.getElementById(...) เป็น $('#...')
+// ตัวแปรเก็บเป็น jQuery object (ขึ้นต้นด้วย $ ตามธรรมเนียม)
+var $list = $('#ft_list');
+var $newBtn = $('#new_btn');
 
-/* ---------- ส่วนจัดการ Cookie ---------- */
+/* ---------- ส่วนจัดการ Cookie (คงเดิม) ---------- */
 
 // เขียน cookie (เข้ารหัสด้วย encodeURIComponent เพราะมีภาษาไทย/อักขระพิเศษ)
 function setCookie(name, value, days) {
@@ -36,9 +41,11 @@ function getCookie(name) {
 // ใช้ DOM เป็นแหล่งข้อมูลหลัก จึงไม่ต้องดูแล array แยกอีกชุด
 function saveList() {
   var items = [];
-  for (var i = 0; i < list.children.length; i++) {
-    items.push(list.children[i].textContent);
-  }
+  // [jQuery] เปลี่ยนจาก for loop + list.children[i].textContent
+  // เป็น $list.children().each(...) และ $(this).text()
+  $list.children().each(function () {
+    items.push($(this).text());
+  });
   setCookie(COOKIE_NAME, JSON.stringify(items), COOKIE_DAYS);
 }
 
@@ -46,40 +53,47 @@ function saveList() {
 
 // สร้าง div ของ TO DO หนึ่งอัน
 function createTodo(text) {
-  var div = document.createElement('div');
-  div.className = 'todo';
-  div.textContent = text;          // textContent ป้องกัน HTML injection
-  div.tabIndex = 0;                // ให้โฟกัสด้วยคีย์บอร์ดได้
-  div.setAttribute('role', 'button');
-  div.title = 'คลิกเพื่อลบ';
+  // [jQuery] เปลี่ยนจาก document.createElement + กำหนด property ทีละบรรทัด
+  // เป็นการสร้าง element ด้วย $('<div>', { ... }) ในครั้งเดียว
+  var $div = $('<div>', {
+    'class': 'todo',
+    tabindex: 0,                   // ให้โฟกัสด้วยคีย์บอร์ดได้
+    role: 'button',
+    title: 'คลิกเพื่อลบ'
+  });
+  $div.text(text);                 // [jQuery] .text() ป้องกัน HTML injection เหมือน textContent
 
-  div.addEventListener('click', function () { removeTodo(div); });
+  // [jQuery] เปลี่ยนจาก addEventListener เป็น .on()
+  $div.on('click', function () { removeTodo($div); });
   // รองรับ Enter / Space เพื่อลบด้วยคีย์บอร์ด
-  div.addEventListener('keydown', function (e) {
+  $div.on('keydown', function (e) {
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
-      removeTodo(div);
+      removeTodo($div);
     }
   });
-  return div;
+  return $div;
 }
 
 // เพิ่ม TO DO ไว้ "บนสุด" ของรายการ
 function addTodo(text) {
-  list.insertBefore(createTodo(text), list.firstChild);
+  // [jQuery] เปลี่ยนจาก insertBefore(..., firstChild) เป็น .prepend()
+  $list.prepend(createTodo(text));
 }
 
 // ลบ TO DO: ถามยืนยันก่อน แล้วลบ element ออกจาก DOM จริง ๆ (ไม่ใช่แค่ซ่อน)
-function removeTodo(div) {
-  if (confirm('ต้องการลบรายการนี้ใช่หรือไม่?\n\n"' + div.textContent + '"')) {
-    list.removeChild(div);
+function removeTodo($div) {
+  // [jQuery] .text() แทน .textContent
+  if (confirm('ต้องการลบรายการนี้ใช่หรือไม่?\n\n"' + $div.text() + '"')) {
+    $div.remove();                 // [jQuery] .remove() แทน list.removeChild(div)
     saveList();                    // อัปเดต cookie หลังลบ
   }
 }
 
 /* ---------- ปุ่ม New ---------- */
 
-newBtn.addEventListener('click', function () {
+// [jQuery] เปลี่ยนจาก newBtn.addEventListener('click', ...) เป็น .on('click', ...)
+$newBtn.on('click', function () {
   var text = prompt('ใส่ TO DO ใหม่:');
   // prompt คืน null ถ้ากด Cancel; ตัดช่องว่างหัวท้าย แล้วต้องไม่ว่างจึงจะเพิ่ม
   if (text !== null && text.trim() !== '') {
@@ -104,4 +118,8 @@ function loadList() {
   }
 }
 
-loadList();
+// [jQuery] เรียก loadList เมื่อ DOM พร้อม ($(function(){...}) = $(document).ready)
+// หมายเหตุ: ตัวแปร $list / $newBtn ด้านบนถูกดึงตอนโหลดไฟล์ ซึ่งปลอดภัยเพราะ script อยู่ท้าย body
+$(function () {
+  loadList();
+});
