@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us | Harborview Realty</title>
+    <meta
+      name="description"
+      content="Learn about Harborview Realty, our history, and meet our team of local real estate agents."
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+    <script>
+      try {
+        var t = localStorage.getItem("hv-theme");
+        if (t === "dark" || t === "light") {
+          document.documentElement.setAttribute("data-theme", t);
+        }
+      } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <header class="site-header">
+      <div class="container nav-bar">
+        <a class="brand" href="index.html">
+          <span class="brand-mark" aria-hidden="true">H</span>
+          Harborview Realty
+        </a>
+        <nav class="primary-nav" aria-label="Primary navigation">
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="listings.html">Listings</a></li>
+            <li><a href="about.html" aria-current="page">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </nav>
+        <div class="nav-actions">
+          <a class="nav-phone" href="tel:+15551234567">(555) 123-4567</a>
+          <a class="btn btn-primary" href="contact.html">Book a Consultation</a>
+          <button
+            type="button"
+            class="theme-toggle"
+            aria-label="Dark mode"
+            aria-pressed="false"
+            hidden
+          ></button>
+          <button
+            type="button"
+            class="nav-toggle"
+            aria-label="Toggle navigation menu"
+            aria-expanded="false"
+          >
+            &#9776;
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main id="main" tabindex="-1">
+      <section
+        class="section"
+        style="padding-top: 48px"
+        aria-labelledby="about-title"
+      >
+        <div class="container">
+          <div class="breadcrumb"><a href="index.html">Home</a> / About</div>
+          <div class="section-heading">
+            <p class="eyebrow">Our Story</p>
+            <h1 id="about-title">Local expertise, honest advice</h1>
+            <p>
+              Harborview Realty has helped buyers, sellers, and renters across
+              the metro area for 18 years, with a team that actually lives in
+              the neighborhoods we serve.
+            </p>
+          </div>
+
+          <div class="split">
+            <div>
+              <img
+                src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=700&q=60"
+                alt="Harborview Realty office storefront with agents inside"
+              />
+            </div>
+            <div>
+              <h2>Founded on trust, built on results</h2>
+              <p>
+                We started as a two-person office in 2008 with a simple idea:
+                give clients the same market knowledge agents use for
+                themselves. Today we're a full-service brokerage with agents
+                specializing in residential sales, rentals, and land.
+              </p>
+              <ul class="feature-list">
+                <li>Independently owned and locally operated</li>
+                <li>Members of the National Association of Realtors</li>
+                <li>Continuing education required for every agent</li>
+                <li>Transparent commission structure, no surprise fees</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-alt" aria-labelledby="team-title">
+        <div class="container">
+          <div class="section-heading">
+            <p class="eyebrow">Our Agents</p>
+            <h2 id="team-title">Meet the team</h2>
+            <p>
+              Every listing is backed by an agent who knows the neighborhood
+              inside and out.
+            </p>
+          </div>
+
+          <div class="team-grid">
+            <article class="team-card">
+              <img
+                src="./imgs/Dana.jfif"
+                alt="Portrait of agent Dana Whitfield"
+              />
+              <div class="team-body">
+                <h3>Dana Whitfield</h3>
+                <p class="role">Listing Agent</p>
+                <p>
+                  Specializes in single-family homes in Riverdale and Hillcrest.
+                </p>
+              </div>
+            </article>
+            <article class="team-card">
+              <img
+                src="./imgs/Marcus.jfif"
+                alt="Portrait of agent Marcus Ibe"
+              />
+              <div class="team-body">
+                <h3>Marcus Ibe</h3>
+                <p class="role">Buyer's Agent</p>
+                <p>
+                  Focused on first-time buyers and downtown condo purchases.
+                </p>
+              </div>
+            </article>
+            <article class="team-card">
+              <img
+                src="./imgs/Priya.jfif"
+                alt="Portrait of agent Priya Anand"
+              />
+              <div class="team-body">
+                <h3>Priya Anand</h3>
+                <p class="role">Rentals & Property Management</p>
+                <p>
+                  Manages leasing for apartment and multi-family properties.
+                </p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="cta-banner">
+            <h2>Work with an agent who knows your area</h2>
+            <p>
+              Tell us what you're looking for and we'll match you with the right
+              person on our team.
+            </p>
+            <a class="btn btn-primary" href="contact.html">Get in Touch</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div>
+            <h4>Harborview Realty</h4>
+            <p>123 Market Street, Suite 400<br />Riverdale, CA 94010</p>
+          </div>
+          <div>
+            <h4>Explore</h4>
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="listings.html">Listings</a></li>
+              <li><a href="about.html">About</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4>Support</h4>
+            <ul>
+              <li><a href="contact.html">Contact</a></li>
+              <li><a href="tel:+15551234567">(555) 123-4567</a></li>
+              <li>
+                <a href="mailto:hello@harborviewrealty.com"
+                  >hello@harborviewrealty.com</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4>Office Hours</h4>
+            <ul>
+              <li>Mon-Fri: 9am - 6pm</li>
+              <li>Saturday: 10am - 3pm</li>
+              <li>Sunday: Closed</li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span>&copy; 2026 Harborview Realty. All rights reserved.</span>
+          <span>Licensed Real Estate Broker #01234567</span>
+        </div>
+      </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/enhancements.js"></script>
+  </body>
+</html>

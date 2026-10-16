@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Harborview Realty | Find Your Next Home</title>
+    <meta
+      name="description"
+      content="Harborview Realty is a full-service real estate agency helping buyers and sellers find homes, condos, and investment properties."
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+    <script>
+      try {
+        var t = localStorage.getItem("hv-theme");
+        if (t === "dark" || t === "light") {
+          document.documentElement.setAttribute("data-theme", t);
+        }
+      } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <header class="site-header">
+      <div class="container nav-bar">
+        <a class="brand" href="index.html">
+          <span class="brand-mark" aria-hidden="true">H</span>
+          Harborview Realty
+        </a>
+        <nav class="primary-nav" aria-label="Primary navigation">
+          <ul>
+            <li><a href="index.html" aria-current="page">Home</a></li>
+            <li><a href="listings.html">Listings</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </nav>
+        <div class="nav-actions">
+          <a class="nav-phone" href="tel:+15551234567">(555) 123-4567</a>
+          <a class="btn btn-primary" href="contact.html">Book a Consultation</a>
+          <button
+            type="button"
+            class="theme-toggle"
+            aria-label="Dark mode"
+            aria-pressed="false"
+            hidden
+          ></button>
+          <button
+            type="button"
+            class="nav-toggle"
+            aria-label="Toggle navigation menu"
+            aria-expanded="false"
+          >
+            &#9776;
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main id="main" tabindex="-1">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="container">
+          <p class="eyebrow eyebrow-light">Harborview Realty</p>
+          <h1 id="hero-title">Find a place that feels like home</h1>
+          <p class="lead">
+            We match buyers, sellers, and renters with properties across the
+            metro area, backed by local market expertise and honest guidance
+            from listing to closing.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="listings.html">Browse Listings</a>
+            <a class="btn btn-outline" href="contact.html">Talk to an Agent</a>
+          </div>
+
+          <form
+            class="search-bar"
+            action="listings.html"
+            method="get"
+            aria-label="Property search"
+          >
+            <div class="field">
+              <label for="search-location">Location or address</label>
+              <input
+                type="text"
+                id="search-location"
+                name="location"
+                placeholder="City, neighborhood, or ZIP code"
+              />
+            </div>
+            <div class="field">
+              <label for="search-type">Property type</label>
+              <select id="search-type" name="type">
+                <option value="">Any type</option>
+                <option value="house">House</option>
+                <option value="condo">Condo</option>
+                <option value="apartment">Apartment</option>
+                <option value="land">Land</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="search-budget">Price range</label>
+              <select id="search-budget" name="budget">
+                <option value="">Any price</option>
+                <optgroup label="For Sale">
+                  <option value="sale:0-250000">Under $250,000</option>
+                  <option value="sale:250000-500000">$250,000 – $500,000</option>
+                  <option value="sale:500000-750000">$500,000 – $750,000</option>
+                  <option value="sale:750000-1000000">$750,000 – $1,000,000</option>
+                  <option value="sale:1000000-">$1,000,000+</option>
+                </optgroup>
+                <optgroup label="For Rent (per month)">
+                  <option value="rent:0-1500">Under $1,500 / mo</option>
+                  <option value="rent:1500-2000">$1,500 – $2,000 / mo</option>
+                  <option value="rent:2000-">$2,000+ / mo</option>
+                </optgroup>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Search</button>
+          </form>
+        </div>
+      </section>
+
+      <section class="section section-alt" aria-labelledby="stats-title">
+        <div class="container">
+          <h2 id="stats-title" class="visually-hidden">Agency track record</h2>
+          <div class="stats-row">
+            <div class="stat-card">
+              <strong>420+</strong>
+              <span>Homes sold</span>
+            </div>
+            <div class="stat-card">
+              <strong>18</strong>
+              <span>Years in business</span>
+            </div>
+            <div class="stat-card">
+              <strong>96%</strong>
+              <span>Client satisfaction</span>
+            </div>
+            <div class="stat-card">
+              <strong>12</strong>
+              <span>Agents on staff</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="section"
+        id="featured-listings"
+        aria-labelledby="featured-title"
+      >
+        <div class="container">
+          <div class="section-heading">
+            <p class="eyebrow">Featured Listings</p>
+            <h2 id="featured-title">Properties our agents recommend</h2>
+            <p>
+              A hand-picked selection of homes currently for sale and for rent.
+            </p>
+          </div>
+
+          <div class="property-grid">
+            <article
+              class="property-card"
+              aria-label="Maple Street Family Home"
+            >
+              <figure>
+                <img
+                  src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=600&q=60"
+                  alt="Two-story brick house with a landscaped front lawn at 128 Maple Street"
+                />
+                <span class="property-status">For Sale</span>
+                <button
+                  type="button"
+                  class="favorite-btn"
+                  data-favorite-id="maple-street"
+                  data-favorite-name="Maple Street Family Home"
+                  aria-pressed="false"
+                  aria-label="Save Maple Street Family Home to favorites"
+                  hidden
+                >
+                  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                  </svg>
+                </button>
+              </figure>
+              <div class="property-body">
+                <p class="property-price">$589,000</p>
+                <h3>Maple Street Family Home</h3>
+                <p class="property-location">📍 128 Maple Street, Riverdale</p>
+                <div class="property-meta">
+                  <span>4 bed</span>
+                  <span>3 bath</span>
+                  <span>2,340 sqft</span>
+                </div>
+                <a
+                  class="btn btn-outline-dark btn-block"
+                  href="property-detail.html"
+                  >View Details</a
+                >
+              </div>
+            </article>
+
+            <article class="property-card" aria-label="Skyline Loft Condo">
+              <figure>
+                <img
+                  src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=600&q=60"
+                  alt="Modern high-rise condo building facade in the downtown district"
+                />
+                <span class="property-status">For Sale</span>
+                <button
+                  type="button"
+                  class="favorite-btn"
+                  data-favorite-id="skyline-loft"
+                  data-favorite-name="Skyline Loft Condo"
+                  aria-pressed="false"
+                  aria-label="Save Skyline Loft Condo to favorites"
+                  hidden
+                >
+                  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                  </svg>
+                </button>
+              </figure>
+              <div class="property-body">
+                <p class="property-price">$412,500</p>
+                <h3>Skyline Loft Condo</h3>
+                <p class="property-location">
+                  📍 900 Harbor Ave #14B, Downtown
+                </p>
+                <div class="property-meta">
+                  <span>2 bed</span>
+                  <span>2 bath</span>
+                  <span>1,180 sqft</span>
+                </div>
+                <a
+                  class="btn btn-outline-dark btn-block"
+                  href="property-detail.html"
+                  >View Details</a
+                >
+              </div>
+            </article>
+
+            <article class="property-card" aria-label="Willow Creek Cottage">
+              <figure>
+                <img
+                  src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=600&q=60"
+                  alt="Small cottage-style home with a wraparound porch near Willow Creek"
+                />
+                <span class="property-status">For Rent</span>
+                <button
+                  type="button"
+                  class="favorite-btn"
+                  data-favorite-id="willow-creek"
+                  data-favorite-name="Willow Creek Cottage"
+                  aria-pressed="false"
+                  aria-label="Save Willow Creek Cottage to favorites"
+                  hidden
+                >
+                  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                  </svg>
+                </button>
+              </figure>
+              <div class="property-body">
+                <p class="property-price">
+                  $2,150
+                  <span class="price-period">/month</span>
+                </p>
+                <h3>Willow Creek Cottage</h3>
+                <p class="property-location">
+                  📍 47 Willow Creek Lane, Eastside
+                </p>
+                <div class="property-meta">
+                  <span>3 bed</span>
+                  <span>2 bath</span>
+                  <span>1,540 sqft</span>
+                </div>
+                <a
+                  class="btn btn-outline-dark btn-block"
+                  href="property-detail.html"
+                  >View Details</a
+                >
+              </div>
+            </article>
+          </div>
+
+          <div class="section-cta">
+            <a class="btn btn-outline-dark" href="listings.html"
+              >See All Listings</a
+            >
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-navy" aria-labelledby="why-us-title">
+        <div class="container split">
+          <div>
+            <img
+              src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=700&q=60"
+              alt="Real estate agent handing house keys to a smiling couple"
+            />
+          </div>
+          <div>
+            <p class="eyebrow">Why Harborview</p>
+            <h2 id="why-us-title">
+              Real guidance, from first showing to closing day
+            </h2>
+            <p>
+              Our agents live in the neighborhoods they sell. That means
+              straight answers on pricing, inspections, and negotiation, not
+              just a lockbox code.
+            </p>
+            <ul class="feature-list">
+              <li>Local market reports updated weekly</li>
+              <li>In-house financing and inspection referrals</li>
+              <li>Dedicated agent from offer to closing</li>
+              <li>No hidden fees on buyer representation</li>
+            </ul>
+            <a class="btn btn-primary" href="about.html">Meet the Team</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="cta-banner">
+            <h2>Ready to find your next property?</h2>
+            <p>Schedule a free consultation with one of our local agents.</p>
+            <a class="btn btn-primary" href="contact.html">Contact Us</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div>
+            <h4>Harborview Realty</h4>
+            <p>123 Market Street, Suite 400<br />Riverdale, CA 94010</p>
+          </div>
+          <div>
+            <h4>Explore</h4>
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="listings.html">Listings</a></li>
+              <li><a href="about.html">About</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4>Support</h4>
+            <ul>
+              <li><a href="contact.html">Contact</a></li>
+              <li><a href="tel:+15551234567">(555) 123-4567</a></li>
+              <li>
+                <a href="mailto:hello@harborviewrealty.com"
+                  >hello@harborviewrealty.com</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4>Office Hours</h4>
+            <ul>
+              <li>Mon-Fri: 9am - 6pm</li>
+              <li>Saturday: 10am - 3pm</li>
+              <li>Sunday: Closed</li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span>&copy; 2026 Harborview Realty. All rights reserved.</span>
+          <span>Licensed Real Estate Broker #01234567</span>
+        </div>
+      </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/enhancements.js"></script>
+  </body>
+</html>

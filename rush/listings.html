@@ -1,0 +1,710 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Listings | Harborview Realty</title>
+    <meta
+      name="description"
+      content="Browse houses, condos, apartments, and land for sale or rent from Harborview Realty."
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+    <script>
+      try {
+        var t = localStorage.getItem("hv-theme");
+        if (t === "dark" || t === "light") {
+          document.documentElement.setAttribute("data-theme", t);
+        }
+      } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav-bar">
+        <a class="brand" href="index.html">
+          <span class="brand-mark" aria-hidden="true">H</span>
+          Harborview Realty
+        </a>
+        <nav class="primary-nav" aria-label="Primary navigation">
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="listings.html" aria-current="page">Listings</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </nav>
+        <div class="nav-actions">
+          <a class="nav-phone" href="tel:+15551234567">(555) 123-4567</a>
+          <a class="btn btn-primary" href="contact.html">Book a Consultation</a>
+          <button
+            type="button"
+            class="theme-toggle"
+            aria-label="Dark mode"
+            aria-pressed="false"
+            hidden
+          ></button>
+          <button
+            type="button"
+            class="nav-toggle"
+            aria-label="Toggle navigation menu"
+            aria-expanded="false"
+          >
+            &#9776;
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section
+        class="section"
+        style="padding-top: 48px; padding-bottom: 24px"
+        aria-labelledby="listings-title"
+      >
+        <div class="container">
+          <div class="breadcrumb"><a href="index.html">Home</a> / Listings</div>
+          <div class="section-heading" style="margin-bottom: 24px">
+            <p class="eyebrow">Available Properties</p>
+            <h1 id="listings-title">Listings</h1>
+            <p>
+              Filter by property type to find houses, condos, apartments, or
+              land currently on the market.
+            </p>
+          </div>
+
+          <form
+            class="search-bar"
+            style="grid-template-columns: 2fr 1fr 1fr auto"
+            action="listings.html"
+            method="get"
+            aria-label="Refine listings"
+          >
+            <div class="field">
+              <label for="loc">Location or address</label>
+              <input
+                type="text"
+                id="loc"
+                name="location"
+                placeholder="City, neighborhood, or ZIP code"
+              />
+            </div>
+            <div class="field">
+              <label for="beds">Bedrooms</label>
+              <select id="beds" name="beds">
+                <option value="">Any</option>
+                <option value="1">1 bedroom</option>
+                <option value="2">2 bedrooms</option>
+                <option value="3">3 bedrooms</option>
+                <option value="4">4 bedrooms</option>
+                <option value="5+">5+ bedrooms</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="budget">Price range</label>
+              <select id="budget" name="budget">
+                <option value="">Any price</option>
+                <optgroup label="For Sale">
+                  <option value="sale:0-250000">Under $250,000</option>
+                  <option value="sale:250000-500000">$250,000 – $500,000</option>
+                  <option value="sale:500000-750000">$500,000 – $750,000</option>
+                  <option value="sale:750000-1000000">$750,000 – $1,000,000</option>
+                  <option value="sale:1000000-">$1,000,000+</option>
+                </optgroup>
+                <optgroup label="For Rent (per month)">
+                  <option value="rent:0-1500">Under $1,500 / mo</option>
+                  <option value="rent:1500-2000">$1,500 – $2,000 / mo</option>
+                  <option value="rent:2000-">$2,000+ / mo</option>
+                </optgroup>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Search</button>
+          </form>
+        </div>
+      </section>
+
+      <section class="section" style="padding-top: 24px">
+        <div class="container">
+          <div
+            class="filter-tabs"
+            role="tablist"
+            aria-label="Filter by property type"
+          >
+            <button
+              type="button"
+              role="tab"
+              aria-selected="true"
+              data-filter="all"
+            >
+              All
+            </button>
+            <button
+              type="button"
+              role="tab"
+              aria-selected="false"
+              data-filter="house"
+            >
+              Houses
+            </button>
+            <button
+              type="button"
+              role="tab"
+              aria-selected="false"
+              data-filter="condo"
+            >
+              Condos
+            </button>
+            <button
+              type="button"
+              role="tab"
+              aria-selected="false"
+              data-filter="apartment"
+            >
+              Apartments
+            </button>
+            <button
+              type="button"
+              role="tab"
+              aria-selected="false"
+              data-filter="land"
+            >
+              Land
+            </button>
+          </div>
+
+          <p id="results-count" class="property-location" aria-live="polite"></p>
+          <div class="property-grid">
+            <article
+              class="property-card"
+              data-property-type="house" data-status="sale" data-price="589000" data-beds="4"
+              aria-label="Maple Street Family Home"
+            >
+              <figure>
+                <img
+                  src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=600&q=60"
+                  alt="Two-story brick house with a landscaped front lawn at 128 Maple Street"
+                />
+                <span class="property-status">For Sale</span>
+                <button
+                  type="button"
+                  class="favorite-btn"
+                  data-favorite-id="maple-street"
+                  data-favorite-name="Maple Street Family Home"
+                  aria-pressed="false"
+                  aria-label="Save Maple Street Family Home to favorites"
+                  hidden
+                >
+                  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                  </svg>
+                </button>
+              </figure>
+              <div class="property-body">
+                <p class="property-price">$589,000</p>
+                <h3>Maple Street Family Home</h3>
+                <p class="property-location">📍 128 Maple Street, Riverdale</p>
+                <div class="property-meta">
+                  <span>4 bed</span>
+                  <span>3 bath</span>
+                  <span>2,340 sqft</span>
+                </div>
+                <a
+                  class="btn btn-outline-dark btn-block"
+                  href="property-detail.html"
+                  >View Details</a
+                >
+              </div>
+            </article>
+
+            <article
+              class="property-card"
+              data-property-type="condo" data-status="sale" data-price="412500" data-beds="2"
+              aria-label="Skyline Loft Condo"
+            >
+              <figure>
+                <img
+                  src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=600&q=60"
+                  alt="Modern high-rise condo building facade in the downtown district"
+                />
+                <span class="property-status">For Sale</span>
+                <button
+                  type="button"
+                  class="favorite-btn"
+                  data-favorite-id="skyline-loft"
+                  data-favorite-name="Skyline Loft Condo"
+                  aria-pressed="false"
+                  aria-label="Save Skyline Loft Condo to favorites"
+                  hidden
+                >
+                  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                  </svg>
+                </button>
+              </figure>
+              <div class="property-body">
+                <p class="property-price">$412,500</p>
+                <h3>Skyline Loft Condo</h3>
+                <p class="property-location">
+                  📍 900 Harbor Ave #14B, Downtown
+                </p>
+                <div class="property-meta">
+                  <span>2 bed</span>
+                  <span>2 bath</span>
+                  <span>1,180 sqft</span>
+                </div>
+                <a
+                  class="btn btn-outline-dark btn-block"
+                  href="property-detail.html"
+                  >View Details</a
+                >
+              </div>
+            </article>
+
+            <article
+              class="property-card"
+              data-property-type="house" data-status="rent" data-price="2150" data-beds="3"
+              aria-label="Willow Creek Cottage"
+            >
+              <figure>
+                <img
+                  src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=600&q=60"
+                  alt="Small cottage-style home with a wraparound porch near Willow Creek"
+                />
+                <span class="property-status">For Rent</span>
+                <button
+                  type="button"
+                  class="favorite-btn"
+                  data-favorite-id="willow-creek"
+                  data-favorite-name="Willow Creek Cottage"
+                  aria-pressed="false"
+                  aria-label="Save Willow Creek Cottage to favorites"
+                  hidden
+                >
+                  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                  </svg>
+                </button>
+              </figure>
+              <div class="property-body">
+                <p class="property-price">
+                  $2,150
+                  <span
+                    style="
+                      font-size: 0.8rem;
+                      color: var(--color-muted);
+                      font-weight: 500;
+                    "
+                    >/month</span
+                  >
+                </p>
+                <h3>Willow Creek Cottage</h3>
+                <p class="property-location">
+                  📍 47 Willow Creek Lane, Eastside
+                </p>
+                <div class="property-meta">
+                  <span>3 bed</span>
+                  <span>2 bath</span>
+                  <span>1,540 sqft</span>
+                </div>
+                <a
+                  class="btn btn-outline-dark btn-block"
+                  href="property-detail.html"
+                  >View Details</a
+                >
+              </div>
+            </article>
+
+            <article
+              class="property-card"
+              data-property-type="apartment" data-status="rent" data-price="1675" data-beds="1"
+              aria-label="Parkview Apartments Unit 5C"
+            >
+              <figure>
+                <img
+                  src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=600&q=60"
+                  alt="Apartment building exterior with balconies overlooking a park"
+                />
+                <span class="property-status">For Rent</span>
+                <button
+                  type="button"
+                  class="favorite-btn"
+                  data-favorite-id="parkview-5c"
+                  data-favorite-name="Parkview Apartments Unit 5C"
+                  aria-pressed="false"
+                  aria-label="Save Parkview Apartments Unit 5C to favorites"
+                  hidden
+                >
+                  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                  </svg>
+                </button>
+              </figure>
+              <div class="property-body">
+                <p class="property-price">
+                  $1,675
+                  <span
+                    style="
+                      font-size: 0.8rem;
+                      color: var(--color-muted);
+                      font-weight: 500;
+                    "
+                    >/month</span
+                  >
+                </p>
+                <h3>Parkview Apartments Unit 5C</h3>
+                <p class="property-location">📍 210 Park Row, Midtown</p>
+                <div class="property-meta">
+                  <span>1 bed</span>
+                  <span>1 bath</span>
+                  <span>720 sqft</span>
+                </div>
+                <a
+                  class="btn btn-outline-dark btn-block"
+                  href="property-detail.html"
+                  >View Details</a
+                >
+              </div>
+            </article>
+
+            <article
+              class="property-card"
+              data-property-type="house" data-status="sale" data-price="1245000" data-beds="5"
+              aria-label="Sunset Ridge Estate"
+            >
+              <figure>
+                <img
+                  src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=600&q=60"
+                  alt="Large modern estate home with a pool at sunset"
+                />
+                <span class="property-status">For Sale</span>
+                <button
+                  type="button"
+                  class="favorite-btn"
+                  data-favorite-id="sunset-ridge"
+                  data-favorite-name="Sunset Ridge Estate"
+                  aria-pressed="false"
+                  aria-label="Save Sunset Ridge Estate to favorites"
+                  hidden
+                >
+                  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                  </svg>
+                </button>
+              </figure>
+              <div class="property-body">
+                <p class="property-price">$1,245,000</p>
+                <h3>Sunset Ridge Estate</h3>
+                <p class="property-location">
+                  📍 8 Sunset Ridge Drive, Hillcrest
+                </p>
+                <div class="property-meta">
+                  <span>5 bed</span>
+                  <span>4 bath</span>
+                  <span>3,880 sqft</span>
+                </div>
+                <a
+                  class="btn btn-outline-dark btn-block"
+                  href="property-detail.html"
+                  >View Details</a
+                >
+              </div>
+            </article>
+
+            <article
+              class="property-card"
+              data-property-type="land" data-status="sale" data-price="165000"
+              aria-label="Vacant Lot on County Road 9"
+            >
+              <figure>
+                <img
+                  src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=600&q=60"
+                  alt="Open vacant land parcel with trees along the edge"
+                />
+                <span class="property-status">For Sale</span>
+                <button
+                  type="button"
+                  class="favorite-btn"
+                  data-favorite-id="county-road-9"
+                  data-favorite-name="Vacant Lot on County Road 9"
+                  aria-pressed="false"
+                  aria-label="Save Vacant Lot on County Road 9 to favorites"
+                  hidden
+                >
+                  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                  </svg>
+                </button>
+              </figure>
+              <div class="property-body">
+                <p class="property-price">$165,000</p>
+                <h3>Vacant Lot on County Road 9</h3>
+                <p class="property-location">
+                  📍 County Road 9, Fairview Township
+                </p>
+                <div class="property-meta">
+                  <span>2.4 acres</span>
+                  <span>Zoned residential</span>
+                </div>
+                <a
+                  class="btn btn-outline-dark btn-block"
+                  href="property-detail.html"
+                  >View Details</a
+                >
+              </div>
+            </article>
+
+            <article
+              class="property-card"
+              data-property-type="condo" data-status="sale" data-price="728000" data-beds="3"
+              aria-label="Marina Bay Residences 3F"
+            >
+              <figure>
+                <img
+                  src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=600&q=60"
+                  alt="Waterfront condo complex next to a marina"
+                />
+                <span class="property-status">For Sale</span>
+                <button
+                  type="button"
+                  class="favorite-btn"
+                  data-favorite-id="marina-bay"
+                  data-favorite-name="Marina Bay Residences 3F"
+                  aria-pressed="false"
+                  aria-label="Save Marina Bay Residences 3F to favorites"
+                  hidden
+                >
+                  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                  </svg>
+                </button>
+              </figure>
+              <div class="property-body">
+                <p class="property-price">$728,000</p>
+                <h3>Marina Bay Residences 3F</h3>
+                <p class="property-location">
+                  📍 4 Marina Bay Circle, Harborfront
+                </p>
+                <div class="property-meta">
+                  <span>3 bed</span>
+                  <span>2 bath</span>
+                  <span>1,760 sqft</span>
+                </div>
+                <a
+                  class="btn btn-outline-dark btn-block"
+                  href="property-detail.html"
+                  >View Details</a
+                >
+              </div>
+            </article>
+
+            <article
+              class="property-card"
+              data-property-type="apartment" data-status="rent" data-price="1420" data-beds="2"
+              aria-label="Cedar Grove Apartments Unit 2A"
+            >
+              <figure>
+                <img
+                  src="https://images.unsplash.com/photo-1502672023488-70e25813eb80?auto=format&fit=crop&w=600&q=60"
+                  alt="Low-rise apartment complex surrounded by cedar trees"
+                />
+                <span class="property-status">For Rent</span>
+                <button
+                  type="button"
+                  class="favorite-btn"
+                  data-favorite-id="cedar-grove-2a"
+                  data-favorite-name="Cedar Grove Apartments Unit 2A"
+                  aria-pressed="false"
+                  aria-label="Save Cedar Grove Apartments Unit 2A to favorites"
+                  hidden
+                >
+                  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                  </svg>
+                </button>
+              </figure>
+              <div class="property-body">
+                <p class="property-price">
+                  $1,420
+                  <span
+                    style="
+                      font-size: 0.8rem;
+                      color: var(--color-muted);
+                      font-weight: 500;
+                    "
+                    >/month</span
+                  >
+                </p>
+                <h3>Cedar Grove Apartments Unit 2A</h3>
+                <p class="property-location">📍 55 Cedar Grove Way, Westside</p>
+                <div class="property-meta">
+                  <span>2 bed</span>
+                  <span>1 bath</span>
+                  <span>890 sqft</span>
+                </div>
+                <a
+                  class="btn btn-outline-dark btn-block"
+                  href="property-detail.html"
+                  >View Details</a
+                >
+              </div>
+            </article>
+          </div>
+          <p id="no-results" hidden style="text-align: center; padding: 32px 0">
+            No properties match your search. Try changing the filters.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div>
+            <h4>Harborview Realty</h4>
+            <p>123 Market Street, Suite 400<br />Riverdale, CA 94010</p>
+          </div>
+          <div>
+            <h4>Explore</h4>
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="listings.html">Listings</a></li>
+              <li><a href="about.html">About</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4>Support</h4>
+            <ul>
+              <li><a href="contact.html">Contact</a></li>
+              <li><a href="tel:+15551234567">(555) 123-4567</a></li>
+              <li>
+                <a href="mailto:hello@harborviewrealty.example"
+                  >hello@harborviewrealty.example</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4>Office Hours</h4>
+            <ul>
+              <li>Mon-Fri: 9am - 6pm</li>
+              <li>Saturday: 10am - 3pm</li>
+              <li>Sunday: Closed</li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span>&copy; 2026 Harborview Realty. All rights reserved.</span>
+          <span>Licensed Real Estate Broker #01234567</span>
+        </div>
+      </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+      (function () {
+        var form = document.querySelector("form.search-bar");
+        var cards = Array.prototype.slice.call(
+          document.querySelectorAll(".property-card"),
+        );
+        var tabs = Array.prototype.slice.call(
+          document.querySelectorAll(".filter-tabs [data-filter]"),
+        );
+        var countEl = document.getElementById("results-count");
+        var emptyEl = document.getElementById("no-results");
+        var type = "all";
+
+        function applyFilters() {
+          var q = form.elements.location.value.trim().toLowerCase();
+          var beds = form.elements.beds.value;
+          var budget = form.elements.budget.value; // "sale:min-max" | "rent:min-max"
+          var bStatus = null, bMin = 0, bMax = Infinity;
+          if (budget) {
+            var parts = budget.split(":");
+            var range = parts[1].split("-");
+            bStatus = parts[0];
+            bMin = range[0] ? Number(range[0]) : 0;
+            bMax = range[1] ? Number(range[1]) : Infinity;
+          }
+          var shown = 0;
+          cards.forEach(function (card) {
+            var ok = true;
+            if (type !== "all" && card.dataset.propertyType !== type) ok = false;
+            if (ok && q) {
+              ok = card.textContent.toLowerCase().indexOf(q) !== -1;
+            }
+            if (ok && beds) {
+              var n = card.dataset.beds;
+              if (n === undefined) ok = false; // land has no bedrooms
+              else if (beds === "5+") ok = Number(n) >= 5;
+              else ok = Number(n) === Number(beds);
+            }
+            if (ok && bStatus) {
+              var price = Number(card.dataset.price);
+              ok =
+                card.dataset.status === bStatus &&
+                price >= bMin &&
+                price < bMax;
+            }
+            card.hidden = !ok;
+            card.style.display = ok ? "" : "none";
+            if (ok) shown++;
+          });
+          countEl.textContent = shown + (shown === 1 ? " property" : " properties") + " found";
+          emptyEl.hidden = shown !== 0;
+        }
+
+        // Handle type tabs here (capture phase) so tabs and the search
+        // fields always filter together.
+        document.addEventListener(
+          "click",
+          function (e) {
+            var tab = e.target.closest(".filter-tabs [data-filter]");
+            if (!tab) return;
+            e.stopPropagation();
+            type = tab.dataset.filter;
+            tabs.forEach(function (t) {
+              t.setAttribute("aria-selected", t === tab ? "true" : "false");
+            });
+            applyFilters();
+          },
+          true,
+        );
+
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
+          applyFilters();
+        });
+        ["change", "input"].forEach(function (ev) {
+          form.addEventListener(ev, applyFilters);
+        });
+
+        // Prefill from URL (e.g. search sent from the home page)
+        var params = new URLSearchParams(window.location.search);
+
+        // Property type comes from the home page as ?type=house|condo|apartment|land
+        var typeParam = params.get("type");
+        if (typeParam) {
+          var matchTab = tabs.filter(function (t) {
+            return t.dataset.filter === typeParam;
+          })[0];
+          if (matchTab) {
+            type = typeParam;
+            tabs.forEach(function (t) {
+              t.setAttribute("aria-selected", t === matchTab ? "true" : "false");
+            });
+          }
+        }
+
+        ["location", "beds", "budget"].forEach(function (k) {
+          var el = form.elements[k];
+          var v = params.get(k);
+          if (!v) return;
+          el.value = v;
+          if (el.tagName === "SELECT" && el.value !== v) el.value = "";
+        });
+        applyFilters();
+      })();
+    </script>
+    <script src="js/chat-loader.js"></script>
+    <script src="js/enhancements.js"></script>
+  </body>
+</html>
